@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require('express');
 
 const PORT = process.env.PORT || 3001;
@@ -10,6 +11,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
+app.get('/db/db.json', (req, res) => {
+
+});
+
+app.post('/db/db.json', (req, res) => {
+
+});
+
+app.delete('/db/db.json', (req, res) => {
+
+});
 
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
