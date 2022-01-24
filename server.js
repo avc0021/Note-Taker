@@ -17,7 +17,15 @@ app.get('/api/notes', (req, res) => {
     fs.readFile("./db/db.json", "utf-8", (err, data) => {
         const noteParse = JSON.parse(data);
         console.log("test 1", noteParse);
-    });
+    if (noteParse == []) {
+        console.log("test 2", noteParse);
+        return res.json(noteParse);
+    } else {
+        if (err) {
+            throw err;
+        }
+    }
+  });
 });
 
 app.post("/api/notes", (req, res) => {
