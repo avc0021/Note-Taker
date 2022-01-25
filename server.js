@@ -1,6 +1,7 @@
 // Modules needed to project
 const fs = require('fs');
 const express = require('express');
+const path = require('path');
 const { nanoid } = require('nanoid');
 const id = nanoid();
 
@@ -43,9 +44,9 @@ app.post("/api/notes", (req, res) => {
 
 // });
 
-app.get("*", (req, res) => {
-     res.sendFile(path.join(__dirname, "./public/index.html"));
-   });
+// app.get("*", (req, res) => {
+//      res.sendFile(path.join(__dirname, "./public/index.html"));
+//    });
 
 
 app.get("/notes", (req, res) => {
