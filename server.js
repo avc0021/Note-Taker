@@ -2,6 +2,8 @@
 const fs = require('fs');
 const express = require('express');
 
+const { nanoid } = require('nanoid');
+const id = nanoid();
 
 
 const PORT = process.env.PORT || 3001;
