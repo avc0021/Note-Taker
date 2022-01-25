@@ -1,10 +1,11 @@
 // Modules needed to project
 const fs = require('fs');
 const express = require('express');
-
 const { nanoid } = require('nanoid');
 const id = nanoid();
 
+// array for new notes created
+const notes = [];
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
+// get info and if info is not available error will occur
 app.get('/api/notes', (req, res) => {
     fs.readFile("./db/db.json", "utf-8", (err,data) => {
       const noteParse = JSON.parse(data);
@@ -25,10 +27,15 @@ app.get('/api/notes', (req, res) => {
     });
   });
 
-//   app.post("/api/notes", (req, res) => {
-//       console.log(req.body);
+// will post new note
+app.post("/api/notes", (req, res) => {
+    console.log(req.body);
 
-//   });
+    req.body.id = id;
+    fs.writeFileSync('db/db.json', JSON.stringify(notes), 'utf-8')
+    res.json(notes);
+
+   });
 
 
 // app.delete('/api/notes', (req, res) => {
