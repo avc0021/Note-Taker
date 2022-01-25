@@ -29,8 +29,9 @@ app.get('/api/notes', (req, res) => {
 
 // will post new note
 app.post("/api/notes", (req, res) => {
-    console.log(req.body);
-
+    
+    const notesInfo = req.body;
+        notes.push(notesInfo);
     req.body.id = id;
     fs.writeFileSync('db/db.json', JSON.stringify(notes), 'utf-8')
     res.json(notes);
