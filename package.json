@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/avc0021/Note-Taker#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "nanoid": "^3.2.0"
   }
 }
