@@ -20,19 +20,19 @@ app.use(express.static('public'));
 // get info and if info is not available error will occur
 app.get('/api/notes', (req, res) => {
     fs.readFile("./db/db.json", "utf-8", (err,data) => {
-      const noteParse = JSON.parse(data);
+      const notes = JSON.parse(data);
         if (err) throw err;
     
-    return res.json(noteParse);
+    return res.json(notes);
     });
   });
 
 // will post new note
 app.post("/api/notes", (req, res) => {
-    
+    req.body.id = id;
     const notesInfo = req.body;
         notes.push(notesInfo);
-    req.body.id = id;
+    
     fs.writeFileSync('db/db.json', JSON.stringify(notes), 'utf-8')
     res.json(notes);
 
