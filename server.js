@@ -16,23 +16,26 @@ const app = express();
 // lastly it will look up the files relative to static directory so its not in URL
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('./public'));
 
 // get info and if info is not available error will occur
 app.get('/api/notes', (req, res) => {
-    fs.readFile("./db/db.json", "utf-8", (err,data) => {
-      const notes = JSON.parse(data);
-        if (err) throw err;
+     fs.readFile("./db/db.json", "utf-8", (err,data) => {
+       const notes = JSON.parse(data);
+         if (err) throw err;
     
-    return res.json(notes);
-    });
-  });
+     return res.json(notes);
+     });
+   });
 
 // will post new note
 app.post("/api/notes", (req, res) => {
+    // will read and return data from db
+    const notes = JSON.parse(fs.readFileSync('./db/db.json'));
+    const newInfo = req.body;
+        notes.push(newInfo);
+    // adds unique id
     req.body.id = id;
-    const notesInfo = req.body;
-        notes.push(notesInfo);
     
     fs.writeFileSync('db/db.json', JSON.stringify(notes), 'utf-8')
     res.json(notes);
